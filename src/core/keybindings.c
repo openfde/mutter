@@ -3813,7 +3813,7 @@ init_builtin_key_bindings (MetaDisplay *display)
                           META_KEYBINDING_ACTION_WORKSPACE_12,
                           handle_switch_to_workspace, 11);
 
-  add_builtin_keybinding (display,
+ /* add_builtin_keybinding (display,
                           "switch-to-workspace-left",
                           common_keybindings,
                           META_KEY_BINDING_NONE,
@@ -3848,6 +3848,7 @@ init_builtin_key_bindings (MetaDisplay *display)
                           META_KEYBINDING_ACTION_WORKSPACE_LAST,
                           handle_switch_to_last_workspace, 0);
 
+			  */
 
 
   /* The ones which have inverses.  These can't be bound to any keystroke
@@ -3960,12 +3961,13 @@ init_builtin_key_bindings (MetaDisplay *display)
 
   /***********************************/
 
-  add_builtin_keybinding (display,
+  /*add_builtin_keybinding (display,
                           "show-desktop",
                           common_keybindings,
                           META_KEY_BINDING_NONE,
                           META_KEYBINDING_ACTION_SHOW_DESKTOP,
                           handle_show_desktop, 0);
+			  */
 
   add_builtin_keybinding (display,
                           "panel-main-menu",
@@ -4105,7 +4107,7 @@ init_builtin_key_bindings (MetaDisplay *display)
    * if no window is active.
    */
 
-  add_builtin_keybinding (display,
+  /*add_builtin_keybinding (display,
                           "activate-window-menu",
                           common_keybindings,
                           META_KEY_BINDING_PER_WINDOW |
@@ -4497,6 +4499,7 @@ init_builtin_key_bindings (MetaDisplay *display)
                           META_KEYBINDING_ACTION_MOVE_TO_CENTER,
                           handle_move_to_center, 0);
 
+  */
   g_object_unref (common_keybindings);
   g_object_unref (mutter_keybindings);
   g_object_unref (mutter_wayland_keybindings);
@@ -4561,11 +4564,11 @@ meta_display_init_keys (MetaDisplay *display)
 
   reload_combos (keys);
 
-  update_window_grab_modifiers (keys);
+  //update_window_grab_modifiers (keys);
 
   /* Keys are actually grabbed in meta_screen_grab_keys() */
 
-  meta_prefs_add_listener (prefs_changed_callback, display);
+  //meta_prefs_add_listener (prefs_changed_callback, display);
 
   g_signal_connect_swapped (backend, "keymap-changed",
                             G_CALLBACK (reload_keybindings), display);

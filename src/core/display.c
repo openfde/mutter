@@ -878,6 +878,7 @@ meta_display_open (void)
   display->wayland_windows = g_hash_table_new (NULL, NULL);
 
   monitor_manager = meta_backend_get_monitor_manager (backend);
+  meta_monitor_manager_switch_config(monitor_manager,META_MONITOR_SWITCH_CONFIG_ALL_MIRROR);
   g_signal_connect (monitor_manager, "monitors-changed-internal",
                     G_CALLBACK (on_monitors_changed_internal), display);
 

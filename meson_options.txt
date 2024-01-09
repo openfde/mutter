@@ -4,6 +4,12 @@ option('opengl',
   description: 'Enable OpenGL'
 )
 
+option('background_install_dir',
+  type: 'string',
+  value: '/usr/share/backgrounds/',
+  description: 'Background png Installation directory'
+)
+
 option('opengl_libname',
   type: 'string',
   value: 'libGL.so.1',

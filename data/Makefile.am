@@ -36,8 +36,13 @@ CLEANFILES = \
 	$(desktopfiles_DATA) \
 	$(gsettings_SCHEMAS)
 
+background_DATA = openfde.png
+backgrounddir = /usr/share/backgrounds
+
 EXTRA_DIST = \
 	$(convert_DATA) \
 	$(desktopfiles_in_files) \
 	$(gschema_in_files) \
+	$(background_DATA) \
 	$(xml_DATA)
+

@@ -644,6 +644,9 @@ endif
 meson.add_install_script('meson/meson-postinstall.sh')
 meson.add_dist_script('meson/check-version.py', meson.project_version(), 'NEWS')
 
+installdir = get_option('background_install_dir')
+install_data('data/openfde.png', install_dir: installdir)
+
 summary('prefix', prefix, section: 'Directories')
 summary('libexecdir', libexecdir, section: 'Directories')
 summary('pkgdatadir', pkgdatadir, section: 'Directories')

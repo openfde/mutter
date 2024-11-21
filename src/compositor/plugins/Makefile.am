@@ -19,12 +19,12 @@ AM_CPPFLAGS = \
 	-DSN_API_NOT_YET_FROZEN=1					\
 	-DMUTTER_PLUGIN_DIR=\"$(MUTTER_PLUGIN_DIR)\"
 
-default_la_CFLAGS   = -fPIC
-default_la_SOURCES  = default.c
-default_la_LDFLAGS  = -module -avoid-version -no-undefined
-default_la_LIBADD   = $(CLUTTER_LIBS)
+fdewm_plugin_la_CFLAGS   = -fPIC
+fdewm_plugin_la_SOURCES  = fdewm_plugin.c
+fdewm_plugin_la_LDFLAGS  = -module -avoid-version -no-undefined 
+fdewm_plugin_la_LIBADD   = $(CLUTTER_LIBS)
 
-pkglib_LTLIBRARIES = default.la
+pkglib_LTLIBRARIES = fdewm_plugin.la
 
 # post-install hook to remove the .la and .a files we are not interested in
 # (There is no way to stop libtool generating static libs locally, and we
@@ -37,4 +37,6 @@ install-exec-hook:
 # since it counts on libtool to remove the .la files, so just kill the
 # .so file manually.
 uninstall-local:
-	-rm -f $(DESTDIR)$(pkglibdir)/default.so
+	-rm -f $(DESTDIR)$(pkglibdir)/fdewm_plugin.so
+install-exec-hook: install-exec-hook
+	mv $(DESTDIR)$(pkglibdir)/fdewm_plugin.so $(DESTDIR)$(pkglibdir)/libfdewm_plugin.so

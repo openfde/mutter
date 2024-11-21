@@ -15,6 +15,6 @@ default_plugin = shared_module('fdewm_plugin',
     gsettings_desktop_schemas_dep,
     libmutter_clutter_dep,
   ],
-  install_dir: '/usr/local/lib/aarch64-linux-gnu/',
+  install_dir: '/usr/local/lib/',
   install: true,
 )

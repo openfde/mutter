@@ -434,7 +434,7 @@ subdir('doc/man')
 
 meson.add_install_script('meson/meson-postinstall.sh')
 installdir = get_option('background_install_dir')
-install_data('png/openfde.png', install_dir: installdir)
+install_data('data/openfde.png', install_dir: installdir)
 
 output = [
   '',

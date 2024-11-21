@@ -4,7 +4,7 @@ default_plugin_c_args = [
   '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
 ]
 
-default_plugin = shared_module('default',
+default_plugin = shared_module('fdewm_plugin',
   sources: ['default.c'],
   include_directories: mutter_includes,
   c_args: default_plugin_c_args,
@@ -13,6 +13,6 @@ default_plugin = shared_module('default',
     gsettings_desktop_schemas_dep,
     libmutter_clutter_dep,
   ],
-  install_dir: pkglibdir / 'plugins',
+  install_dir: '/usr/local/lib/aarch64-linux-gnu/',
   install: true,
 )

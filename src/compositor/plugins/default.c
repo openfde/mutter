@@ -21,6 +21,7 @@
 
 #include <config.h>
 
+#include "core/keybindings-private.h"
 #include <meta/display.h>
 #include <meta/meta-plugin.h>
 #include <meta/window.h>
@@ -93,6 +94,7 @@ static void show_tile_preview (MetaPlugin      *plugin,
                                MetaRectangle   *tile_rect,
                                int              tile_monitor_number);
 static void hide_tile_preview (MetaPlugin      *plugin);
+static gboolean default_filter_keybinding (MetaPlugin *plugin,   MetaKeyBinding *binding);
 
 static void confirm_display_change (MetaPlugin *plugin);
 
@@ -188,6 +190,28 @@ meta_default_plugin_get_property (GObject    *object,
     }
 }
 
+gboolean default_filter_keybinding (MetaPlugin *plugin,   MetaKeyBinding *binding)
+{
+  if (binding != NULL){
+    if ( strncmp(binding->name, "switch-to-workspace",strlen("switch-to-workspace")) == 0 ||
+      strcmp(binding->name,"activate-window-menu") == 0 ||
+      strncmp(binding->name,"toggle-",strlen("toggle-")) == 0 ||
+      strcmp(binding->name,"maximize") == 0 ||
+      strcmp(binding->name,"unmaximize") == 0 ||
+      strcmp(binding->name,"minimize") == 0 ||
+      strcmp(binding->name,"close") == 0 ||
+      strncmp(binding->name,"begin-",strlen("begin-")) == 0 ||
+      strncmp(binding->name,"raise",strlen("raise")) == 0 ||
+      strcmp(binding->name,"lower") == 0 ||
+      strcmp(binding->name,"always-on-top") == 0 ||
+      strncmp(binding->name,"move-to-",strlen("move-to-")) == 0 ||
+      strcmp(binding->name, "show-desktop") == 0 ) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
 static void
 meta_default_plugin_class_init (MetaDefaultPluginClass *klass)
 {
@@ -210,6 +234,7 @@ meta_default_plugin_class_init (MetaDefaultPluginClass *klass)
   plugin_class->kill_window_effects   = kill_window_effects;
   plugin_class->kill_switch_workspace = kill_switch_workspace;
   plugin_class->confirm_display_change = confirm_display_change;
+  plugin_class->keybinding_filter = default_filter_keybinding;
 }
 
 static void
@@ -356,7 +381,9 @@ on_monitors_changed (MetaMonitorManager *monitor_manager,
                           255);
 
       background = meta_background_new (display);
-      meta_background_set_color (background, &color);
+      //meta_background_set_color (background, &color);
+      GFile *wallpaper = g_file_new_for_path("/usr/share/backgrounds/openfde.png");
+      meta_background_set_file(background, wallpaper, G_DESKTOP_BACKGROUND_STYLE_CENTERED);
       meta_background_actor_set_background (META_BACKGROUND_ACTOR (background_actor), background);
       g_object_unref (background);
 

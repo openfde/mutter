@@ -374,16 +374,17 @@ on_monitors_changed (MetaMonitorManager *monitor_manager,
          parsing the driconf XML, but it's nice if the colors are
          reproducible.
       */
-      clutter_color_init (&color,
+      /* clutter_color_init (&color,
                           g_rand_int_range (rand, 0, 255),
                           g_rand_int_range (rand, 0, 255),
                           g_rand_int_range (rand, 0, 255),
                           255);
-
+      */
+      clutter_color_init (&color, 0, 0, 0, 255);
       background = meta_background_new (display);
-      //meta_background_set_color (background, &color);
-      GFile *wallpaper = g_file_new_for_path("/usr/share/backgrounds/openfde.png");
-      meta_background_set_file(background, wallpaper, G_DESKTOP_BACKGROUND_STYLE_CENTERED);
+      meta_background_set_color (background, &color);
+      //GFile *wallpaper = g_file_new_for_path("/usr/share/backgrounds/openfde.png");
+      //meta_background_set_file(background, wallpaper, G_DESKTOP_BACKGROUND_STYLE_CENTERED);
       meta_background_actor_set_background (META_BACKGROUND_ACTOR (background_actor), background);
       g_object_unref (background);
 

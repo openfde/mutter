@@ -360,7 +360,7 @@ on_monitors_changed (MetaMonitorManager *monitor_manager,
       MetaRectangle rect;
       ClutterActor *background_actor;
       MetaBackground *background;
-      // ClutterColor color;
+      ClutterColor color;
 
       meta_display_get_monitor_geometry (display, i, &rect);
 
@@ -379,10 +379,11 @@ on_monitors_changed (MetaMonitorManager *monitor_manager,
                           g_rand_int_range (rand, 0, 255),
                           255);
       */
+      clutter_color_init (&color, 0, 0, 0, 255);
       background = meta_background_new (display);
-      // meta_background_set_color (background, &color);
-      GFile *wallpaper = g_file_new_for_path("/usr/share/backgrounds/openfde.png");
-      meta_background_set_file(background, wallpaper, G_DESKTOP_BACKGROUND_STYLE_CENTERED);
+      meta_background_set_color (background, &color);
+      //GFile *wallpaper = g_file_new_for_path("/usr/share/backgrounds/openfde.png");
+      //meta_background_set_file(background, wallpaper, G_DESKTOP_BACKGROUND_STYLE_CENTERED);
       meta_background_actor_set_background (META_BACKGROUND_ACTOR (background_actor), background);
       g_object_unref (background);
 
